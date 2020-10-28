@@ -16,9 +16,7 @@ class Container extends React.Component {
 
     console.log('sss: ', store.getState())
 
-    await wait(() => {
-      return store.getState().Movie.search.built === true
-    })
+    await wait(() => store.getState().Movie.search.isBuilt)
 
     return {}
   }

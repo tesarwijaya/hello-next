@@ -37,7 +37,7 @@ const Movie = {
     search: {
       ...state.search,
       isLoading: false,
-      built: true,
+      isBuilt: true,
       data: payload.data,
     },
   }),

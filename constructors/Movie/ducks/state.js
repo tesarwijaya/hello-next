@@ -1,6 +1,6 @@
 const initialState = {
   search: {
-    built: false,
+    isBuilt: false,
     data: {
       Response: false,
       Search: [],
