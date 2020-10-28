@@ -38,17 +38,17 @@ export function movieSearchEpic(action$, state$) {
     )
 }
 
-// export function movieSearchDetailEpic(action$, state$) {
-//   return action$
-//     .pipe(
-//       ofType(MOVIE_SEARCH_DETAIL),
-//       mergeMap(() => ajax({createXHR, url: `http://www.omdbapi.com/?apikey=db686161&i=${state$.value.Movie.detail.modal}&plot=full`})
-//         .pipe(
-//           map(({ response }) => movieSearchDetailSuccess(response)),
-//           catchError((response) => of(
-//             movieSearchDetailFailed(response),
-//           )),
-//         )),
-//       catchError((response) => of(movieSearchDetailFailed(response))),
-//     )
-// }
+export function movieSearchDetailEpic(action$, state$) {
+  return action$
+    .pipe(
+      ofType(MOVIE_SEARCH_DETAIL),
+      mergeMap(() => apiObservable({url: `?apikey=db686161&i=${state$.value.Movie.detail.modal}&plot=full`, method: 'get'})
+        .pipe(
+          map(({ response }) => movieSearchDetailSuccess(response)),
+          catchError((response) => of(
+            movieSearchDetailFailed(response),
+          )),
+        )),
+      catchError((response) => of(movieSearchDetailFailed(response))),
+    )
+}
