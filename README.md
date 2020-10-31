@@ -19,7 +19,9 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 Take a look at the following resources:
 
 - [React](https://reactjs.org/docs/getting-started.html) - learn about basic react app.
-- [React-Redux](https://react-redux.js.org/introduction/quick-start) - React Redux is the official React binding for Redux. It lets your React components read data from a Redux store, and dispatch actions to the store to update data.
+- [Redux](https://redux.js.org/introduction/getting-started) -  predictable state container for JavaScript apps.
+- [RxJS](https://rxjs-dev.firebaseapp.com/guide/overview) - library for composing asynchronous and event-based 
+- [React-Redux](https://react-redux.js.org/introduction/quick-start) - the official React binding for Redux. It lets your React components read data from a Redux store, and dispatch actions to the store to update data.programs by using observable sequences.
 - [Redux-Observable](https://redux-observable.js.org/) - RxJS-based middleware for Redux. Compose and cancel async actions to create side effects and more.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
