@@ -3,9 +3,11 @@ import { HYDRATE } from 'next-redux-wrapper'
 import { diff } from 'jsondiffpatch'
 
 import Movie from '../../constructors/Movie/ducks/reducer'
+import People from '../../constructors/People/ducks/reducer'
 
 const appReducers = combineReducers({
   Movie,
+  People,
 })
 
 const rootReducers = (state, action) => {

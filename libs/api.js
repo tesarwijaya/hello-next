@@ -3,8 +3,8 @@ import { Observable } from 'rxjs'
 /**
  * API instance
  */
-const api = axios.create({
-  baseURL: 'http://www.omdbapi.com/',
+export const api = axios.create({
+  baseURL: 'https://swapi.dev/api',
   timeout: 20000,
 })
 
@@ -33,4 +33,3 @@ export function apiObservable(options) {
     }
   })
 }
-  
