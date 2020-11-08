@@ -7,7 +7,7 @@ function isFavorite(favorites, url) {
 }
 
 function Favorite({
-  detailModalHandler,
+  modalHandler,
   favorites,
   favoriteAddHandler,
   favoriteRemoveHandler,
@@ -27,7 +27,7 @@ function Favorite({
         {favorites.length > 0 ? (
           favorites.map((v, i) => (
             <tr key={i.toString()}>
-              <td><Button onClick={() => detailModalHandler(v.imdbID)} variant="link">{v.name}</Button></td>
+              <td><Button onClick={() => modalHandler(v)} variant="link">{v.name}</Button></td>
               <td>{v.height}</td>
               <td>{v.mass}</td>
               <td>{v.hair_color}</td>
@@ -53,7 +53,7 @@ function Favorite({
 }
 
 Favorite.propTypes = {
-  detailModalHandler: PropTypes.func.isRequired,
+  modalHandler: PropTypes.func.isRequired,
   favorites: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   favoriteAddHandler: PropTypes.func.isRequired,
   favoriteRemoveHandler: PropTypes.func.isRequired,
