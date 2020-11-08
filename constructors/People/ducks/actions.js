@@ -8,9 +8,10 @@ import {
   PEOPLE_FAVORITE_REMOVE,
 } from './reducer'
 
-export function people() {
+export function people(data) {
   return {
     type: PEOPLE,
+    payload: { data },
   }
 }
 

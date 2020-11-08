@@ -21,11 +21,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    people() {
+    people(data) {
       return (e) => {
         e.preventDefault()
 
-        dispatch(people())
+        dispatch(people(data))
       }
     },
     modalHandler(data) {

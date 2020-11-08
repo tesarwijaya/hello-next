@@ -10,6 +10,8 @@ import {
   Table,
 } from 'react-bootstrap'
 
+import Qs from 'query-string'
+
 function isFavorite(favorites, url) {
   return !!favorites.filter((v) => v.url === url).length
 }
@@ -22,38 +24,45 @@ function Search({
   favoriteAddHandler,
   favoriteRemoveHandler,
   data,
+  people,
 }) {
   return (
     <>
       {data.results.length > 0 && (
-      <Table responsive>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Height</th>
-            <th>Mass</th>
-            <th>Hair Color</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.results.map((v, i) => (
-            <tr key={i.toString()}>
-              <td><Button onClick={() => modalHandler(v)} variant="link">{v.name}</Button></td>
-              <td>{v.height}</td>
-              <td>{v.mass}</td>
-              <td>{v.hair_color}</td>
-              <td>
-                {isFavorite(favorites, v.url) ? (
-                  <Button variant="outline-danger" onClick={favoriteRemoveHandler(v)}>Remove from My Favorite</Button>
-                ) : (
-                  <Button variant="outline-primary" onClick={favoriteAddHandler(v)}>Add to My Favorite</Button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+        <>
+          <Table responsive>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Height</th>
+                <th>Mass</th>
+                <th>Hair Color</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.results.map((v, i) => (
+                <tr key={i.toString()}>
+                  <td><Button onClick={() => modalHandler(v)} variant="link">{v.name}</Button></td>
+                  <td>{v.height}</td>
+                  <td>{v.mass}</td>
+                  <td>{v.hair_color}</td>
+                  <td>
+                    {isFavorite(favorites, v.url) ? (
+                      <Button variant="outline-danger" onClick={favoriteRemoveHandler(v)}>Remove from My Favorite</Button>
+                    ) : (
+                      <Button variant="outline-primary" onClick={favoriteAddHandler(v)}>Add to My Favorite</Button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <Container style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Button variant="outline-primary" disabled={!data.previous} onClick={people({ page: data.previous ? Qs.parseUrl(data.previous).query.page : 0 })}>Prev</Button>
+            <Button variant="outline-primary" disabled={!data.next} onClick={people({ page: data.next ? Qs.parseUrl(data.next).query.page : 0 })}>Next</Button>
+          </Container>
+        </>
       )}
 
       <Modal show={Object.keys(modal).length} onHide={() => modalClose()} size="lg">
@@ -95,6 +104,11 @@ function Search({
 }
 
 Search.propTypes = {
+  data: PropTypes.shape({
+    previous: PropTypes.string,
+    next: PropTypes.string,
+    results: PropTypes.arrayOf(PropTypes.shape({})),
+  }).isRequired,
   modal: PropTypes.shape({
     name: PropTypes.string,
     height: PropTypes.string,
@@ -110,9 +124,7 @@ Search.propTypes = {
   favorites: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   favoriteAddHandler: PropTypes.func.isRequired,
   favoriteRemoveHandler: PropTypes.func.isRequired,
-  data: PropTypes.shape({
-    results: PropTypes.arrayOf(PropTypes.shape({})),
-  }).isRequired,
+  people: PropTypes.func.isRequired,
 }
 
 export default Search

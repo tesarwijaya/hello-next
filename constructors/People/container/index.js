@@ -9,7 +9,7 @@ import Component from '../component'
 
 class Container extends React.Component {
   static async getInitialProps({ store }) {
-    await store.dispatch(people())
+    await store.dispatch(people({ page: 1 }))
 
     await wait(() => store.getState().People.people.isBuilt)
 

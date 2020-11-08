@@ -23,7 +23,7 @@ export function peopleEpic(action$) {
   return action$
     .pipe(
       ofType(PEOPLE),
-      mergeMap(() => apiObservable({ url: '/people', method: 'get' })
+      mergeMap(({ payload }) => apiObservable({ url: '/people', params: payload.data, method: 'get' })
         .pipe(
           map((response) => peopleSuccess(response.data)),
           catchError((response) => of(

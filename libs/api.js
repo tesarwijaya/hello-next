@@ -14,13 +14,7 @@ api.defaults.headers.post['Content-Type'] = 'application/json'
 export function apiObservable(options) {
   return new Observable(async (subscriber) => {
     try {
-      const {
-        method = 'get', url,
-      } = options
-      const result = await api({
-        method,
-        url,
-      })
+      const result = await api(options)
 
       subscriber.next(result)
       subscriber.complete()
