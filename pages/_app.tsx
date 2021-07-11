@@ -1,14 +1,14 @@
 import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+import type { AppProps } from 'next/app'
 import { wrapper } from '../redux'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return <Component {...pageProps} />
 }
 
 MyApp.getInitialProps = async ({Component, ctx}) => {
-  console.log('myapp', Component)
   return {
     pageProps: {
       // Call page-level getInitialProps
