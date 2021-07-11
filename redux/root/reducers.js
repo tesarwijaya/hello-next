@@ -10,7 +10,7 @@ const appReducers = combineReducers({
 
 const rootReducers = (state, action) => {
   const stateDiff = diff(state, action.payload)
-  const wasBumpedOnClient = stateDiff.page && stateDiff.page[0].endsWith('X')
+  const wasBumpedOnClient = stateDiff?.page && stateDiff.page[0].endsWith('X')
 
   switch (action.type) {
     case HYDRATE:
