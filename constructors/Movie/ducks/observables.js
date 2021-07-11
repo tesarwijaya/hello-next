@@ -44,7 +44,7 @@ export function movieSearchDetailEpic(action$, state$) {
       ofType(MOVIE_SEARCH_DETAIL),
       mergeMap(() => apiObservable({url: `?apikey=db686161&i=${state$.value.Movie.detail.modal}&plot=full`, method: 'get'})
         .pipe(
-          map(({ response }) => movieSearchDetailSuccess(response)),
+          map((response) => movieSearchDetailSuccess(response.data)),
           catchError((response) => of(
             movieSearchDetailFailed(response),
           )),
