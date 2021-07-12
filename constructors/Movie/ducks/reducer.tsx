@@ -1,5 +1,6 @@
 import createReducer from '../../../libs/reducer'
 import State from './state'
+import type {InitialState} from './state'
 
 export const MOVIE_SEARCH = 'MOVIE_SEARCH'
 export const MOVIE_SEARCH_FAILED = 'MOVIE_SEARCH_FAILED'
@@ -15,14 +16,14 @@ export const MOVIE_SEARCH_DETAIL_MODAL = 'MOVIE_SEARCH_DETAIL_MODAL'
 export const MOVIE_SEARCH_DETAIL_SUCCESS = 'MOVIE_SEARCH_DETAIL_SUCCESS'
 
 const Movie = {
-  [MOVIE_SEARCH]: (state) => ({
+  [MOVIE_SEARCH]: (state: InitialState): InitialState => ({
     ...state,
     search: {
       ...state.search,
       isLoading: true,
     },
   }),
-  [MOVIE_SEARCH_FAILED]: (state, { payload }) => ({
+  [MOVIE_SEARCH_FAILED]: (state: InitialState, { payload }): InitialState => ({
     ...state,
     search: {
       ...state.search,
@@ -32,7 +33,7 @@ const Movie = {
       },
     },
   }),
-  [MOVIE_SEARCH_SUCCESS]: (state, { payload }) => ({
+  [MOVIE_SEARCH_SUCCESS]: (state: InitialState, { payload }): InitialState => ({
     ...state,
     search: {
       ...state.search,
@@ -41,18 +42,18 @@ const Movie = {
       data: payload.data,
     },
   }),
-  [MOVIE_SEARCH_FORM]: (state, { payload }) => ({
+  [MOVIE_SEARCH_FORM]: (state: InitialState, { payload }): InitialState => ({
     ...state,
     search: {
       ...state.search,
       form: {
-        ...state.form,
+        ...state.search.form,
         [payload.meta]: payload.data,
       },
     },
   }),
 
-  [MOVIE_SEARCH_FAVORITE_ADD]: (state, { payload }) => ({
+  [MOVIE_SEARCH_FAVORITE_ADD]: (state: InitialState, { payload }): InitialState => ({
     ...state,
     favorites: [
       ...state.favorites,
@@ -60,19 +61,19 @@ const Movie = {
     ],
   }),
 
-  [MOVIE_SEARCH_FAVORITE_REMOVE]: (state, { payload }) => ({
+  [MOVIE_SEARCH_FAVORITE_REMOVE]: (state: InitialState, { payload }): InitialState => ({
     ...state,
     favorites: state.favorites.filter((i) => i !== payload.data),
   }),
 
-  [MOVIE_SEARCH_DETAIL]: (state) => ({
+  [MOVIE_SEARCH_DETAIL]: (state: InitialState): InitialState => ({
     ...state,
     detail: {
       ...state.detail,
       isLoading: true,
     },
   }),
-  [MOVIE_SEARCH_DETAIL_FAILED]: (state, { payload }) => ({
+  [MOVIE_SEARCH_DETAIL_FAILED]: (state: InitialState, { payload }): InitialState => ({
     ...state,
     detail: {
       ...state.detail,
@@ -82,14 +83,14 @@ const Movie = {
       },
     },
   }),
-  [MOVIE_SEARCH_DETAIL_MODAL]: (state, { payload }) => ({
+  [MOVIE_SEARCH_DETAIL_MODAL]: (state: InitialState, { payload }): InitialState => ({
     ...state,
     detail: {
       ...state.detail,
       modal: payload.data,
     },
   }),
-  [MOVIE_SEARCH_DETAIL_SUCCESS]: (state, { payload }) => ({
+  [MOVIE_SEARCH_DETAIL_SUCCESS]: (state: InitialState, { payload }): InitialState => ({
     ...state,
     detail: {
       ...state.detail,
